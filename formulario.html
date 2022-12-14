@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+	<style>
+	
+		body{
+				background: linear-gradient(deepskyblue, #c6d8f0, #c4f9ff, #d8bfd8, #ff8ad2, #fff2a7);	
+			}
+	
+		header{
+			font-family: 'Handlee', cursive;
+			color: white;
+			font-size: 2.5rem;
+		}
+		
+		.card{
+			background-color: transparent;
+			border:none;
+			font-family: 'Handlee', cursive;
+		}
+		
+		.titulo{
+			font-size: 30px;
+			display: flex;
+			justify-content: center;
+			color: #ae3dff;;
+		}
+		.btn{
+			background-color: deepskyblue;
+			color: white;
+		}
+		
+		a{
+			color:white;
+			text-decoration: none;
+		}
+		
+		a:hover {
+			color:deeppink;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="logo-container d-flex justify-content-between mb-3 p-3">
+		<span class="logo">Carvalho Ateliê</span>
+		<span class="logo"> <a href="/home">Home</a> </span>
+	</header>
+	
+	<div class="container">
+			<div class="card">
+		
+			<div class="titulo"> 
+				<span>Novo pedido</span>
+			</div>
+			
+			<form th:object="${requisicaoNovoPedido}" action="/pedido/novo" method="POST" class="card-body">
+				<div class="form-group">
+					<label for="nome">Produto</label>
+					<input th:field="*{nome}" placeholder="nome do produto" class="form-control" th:errorclass="is-invalid">
+					<small>Informe o nome do produto</small>
+					<div th:errors="*{nome}" class="invalid-feedback">
+						Erro nome do produto
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="valor">Valor do Produto</label>
+					<input th:field="*{valor}" placeholder="valor do produto" class="form-control">
+					<small>Informe o valor do produto</small>
+				</div>
+				
+				<div class="form-group">
+					<label for="dataDaEntrega">Data de entrega</label>
+					<input th:field="*{dataDaEntrega}" placeholder="data da entrega do produto" class="form-control">
+					<small>Informe a data de entrega do produto</small>
+				</div>
+				
+				<div class="form-group">
+					<label for="descricao">Descrição</label>
+					<textarea th:field="*{descricao}" placeholder=" Adicione detalhes do pedido"
+						class="form-control"></textarea>
+				</div>
+				<button type="submit" class="btn">Cadastrar</button>
+				
+			</form>
+		</div>
+	</div>	
+</body>
